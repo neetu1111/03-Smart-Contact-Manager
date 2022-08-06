@@ -1,0 +1,134 @@
+ Smart COntact Manager
+ 
+ 1)Dependency Required:-
+ 
+ Starter-Web
+ Starter-thymeleaf
+  Starter-data-JPA
+ Starter-Security
+ spring-boot-devTools
+ mysql-connector-java
+ validation-api
+ hibernate-validator
+ lombok
+ 
+ 
+ src/main/java
+    com.smart
+       SmartContactManagerApplication.java
+    com.smart.entity
+             User.java
+             Contact.java
+             
+----------------------------------------------
+ ER Digram:-
+   Entity Relation Ship Digram
+   
+   website:-app.digrams.net (draw.io)
+   
+   
+  Entity Class -:User(one) - id(primary key),name,email,password,imageUrl,Description,role,about,enabled
+   
+   	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "user")
+	private List<Contact> contacts= new ArrayList<>();
+	
+	-mappedBy user To prevent another table new  user_contact[user_id,contact_cid] its not useful we want only User id column as forign key
+	-CascadeType.ALL propagates all operations — including Hibernate-specific ones — from a parent to a child entity
+	   
+   Entity Class -:Contact(many)- cid(primary key),name,nickName,work,email,image,description,phone ,[User_id as foriegn key]
+   
+   @ManyToOne
+	@JsonIgnore
+	private User user;
+-------------------------------------------
+             
+    
+    com.smart.controller
+                   HomeContorller Class
+                       @controller Class
+                       @autowaire
+                       private UserRepository userRepository;
+                       
+                       public String home(Model model)(handler)
+                       
+    com.smart.service
+    
+    com.smart.repository
+                    UserRepository Interface implement JPARepository
+    
+src/main/resources
+      static-css,js
+      
+      template-html,jsp
+         home.html
+      
+      Application.property:-
+      database configuration
+      serverport change
+      
+
+   Login Using spring security by database
+   -------------------------------------------
+   
+   1) create CustomeUserDetails Class Implement UserDetails Interface there is abstruct methoed we implement in Our class
+   
+   UserDetails Interface Method 
+   
+   
+   Collection<? extends GrantedAuthority> getAuthorities();
+   /**
+	 * Returns the password used to authenticate the user.
+	 * @return the password
+	 */
+	String getPassword();
+
+	/**
+	 * Returns the username used to authenticate the user. Cannot return
+	 * <code>null</code>.
+	 * @return the username (never <code>null</code>)
+	 */
+	String getUsername();
+
+	/**
+	 * Indicates whether the user's account has expired. An expired account cannot be
+	 * authenticated.
+	 * @return <code>true</code> if the user's account is valid (ie non-expired),
+	 * <code>false</code> if no longer valid (ie expired)
+	 */
+	boolean isAccountNonExpired();
+
+	/**
+	 * Indicates whether the user is locked or unlocked. A locked user cannot be
+	 * authenticated.
+	 * @return <code>true</code> if the user is not locked, <code>false</code> otherwise
+	 */
+	boolean isAccountNonLocked();
+
+	/**
+	 * Indicates whether the user's credentials (password) has expired. Expired
+	 * credentials prevent authentication.
+   
+   
+   2) create class
+    public class UserDetailsServiceImpl implements UserDetailsService
+   
+   UserDetailsService Interface Has only one abstract methoad which override in this class
+   
+   
+   UserDetails loadUserByUsername(String username) throws UsernameNotFoundException;
+   
+   3) create SercurityConfig class with all configuration and extends WebSecurityConfigurationAdeptor class
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+       
+  

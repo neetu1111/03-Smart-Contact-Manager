@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="normal/base::layout(~{:: section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<section>
+
+<form class="needs-validation" novalidate th:action="@{/user/process-updatecontact}" th:object="${contact}" enctype="multipart/form-data" th:method="Post">
+  <div class="form-row">
+  <input type="text" name="cid" th:value="${contact.cid}"/>
+    <div class="col-md-4 mb-3">
+      <label for="validationCustom01">First name</label>
+      <input type="text" required class="form-control" id="validationCustom01" name="name"  placeholder="First name" th:value="${contact.name}" >
+      
+    </div>
+    <div class="col-md-4 mb-3">
+      <label for="validationCustom02">Last name</label>
+      <input type="text" class="form-control" id="validationCustom02" name="secondName" placeholder="Last name" th:value="${contact.secondName}" required>
+      
+    </div>
+    <div class="col-md-4 mb-3">
+      <label for="validationCustomUsername">Email</label>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroupPrepend">@</span>
+        </div>
+        <input type="text" class="form-control" id="validationCustomUsername" th:value="${contact.email}" name="email" placeholder="Email" aria-describedby="inputGroupPrepend" required>
+        
+      </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col-md-4 mb-3">
+      <label for="validationCustom02">Work</label>
+      <input type="text" class="form-control" id="validationCustom02" placeholder="Work" name="work" th:value="${contact.work}" required>
+      
+    </div>
+    <div class="col-md-4 mb-3">
+      <label for="validationCustom02">Phone No.</label>
+      <input type="text" class="form-control" id="validationCustom02" placeholder="Phone No" name="phone" th:value="${contact.phone}"  required>
+     
+    </div>
+    <div class="col-md-8 mb-3">
+      <label for="validationCustom05">Contact Description</label>
+      <textarea  id="mytextarea" class="form-control"    placeholder="Contact Description" name="Description" th:text="${contact.Description}" required></textarea>
+      
+    </div>
+  </div>
+  <div class="custom-file col-md-4 mb-3">
+  <input type="file" name="profileImage"/>
+  
+  </div>
+  <button class="btn btn-primary" >Submit form</button>
+</form>
+</section>
+</body>
+</html>

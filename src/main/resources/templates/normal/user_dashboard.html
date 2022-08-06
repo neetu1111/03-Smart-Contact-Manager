@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="normal/base::layout(~{:: section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<section>
+
+<h1>dash board</h1>
+<h1>User Name : <span th:text="${userdata.name}"></span></h1>
+<h1>User Email : <span th:text="${userdata.email}"></span></h1>
+<h2><a th:href="@{/logout}">Logout</a></h2>
+
+  <hr/>
+  <div class="container emp-profile">
+  <h3>Donate Us !!</h3>
+  <input type="text" id="payment_field" name="payment_field" class="form-control my-2 mt-4" placeholder="Enter amount here !!"/>
+  <div class="container text-center">
+  <button onclick="paymentStart()" class="btn btn-success btn-block">checkOut</button>
+  </div>
+  </div>
+</section>
+</body>
+</html>

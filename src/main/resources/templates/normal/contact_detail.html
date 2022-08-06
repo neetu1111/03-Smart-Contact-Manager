@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="normal/base::layout(~{:: section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<section>
+
+<div class="container emp-profile">
+           <div th:if="${ucontact}">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="profile-img">
+                            <img th:src="@{'/img/'+${ucontact.image}}" class="profile_img" alt=""/>
+                            <div class="file btn btn-lg btn-primary">
+                                Change Photo
+                                <input type="file" name="file"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="profile-head">
+                                    <h5>
+                                        
+                                 <span th:text="${ucontact.name}"></span>
+                                    </h5>
+                                    <h6>
+                                        <span th:text="${ucontact.work}"></span>
+                                    </h6>
+                                   
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
+                                </li>
+                               </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/></br>
+                            <a th:href="@{'/user/delete/'+${ucontact.cid}}" class="btn btn-danger btn-sm">Delete</a>
+                    </div>
+                    <div class="col-md-2">
+                    
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="profile-work">
+                          
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="tab-content profile-tab" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>User Id</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p th:text="${ucontact.cid}"></p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label >Name</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p th:text="${ucontact.name}"></p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Email</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p th:text="${ucontact.email}"></p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Phone</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p th:text="${ucontact.phone}"></p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Profession</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p th:text="${ucontact.work}"></p>
+                                            </div>
+                                        </div>
+                            </div>
+                           
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div th:unless="${ucontact}">You don't have a permission to show this contact !!!</div>
+                   
+        </div>
+</section>
+</body>
+</html>
